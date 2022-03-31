@@ -1,0 +1,11 @@
+#!/bin/sh
+# Run discord and brave browser
+discord &
+brave &
+
+# Deamonize flameshot
+flameshot &
+
+# Picom and qtile
+picom --experimental-backend &
+qtile start
