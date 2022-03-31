@@ -1,5 +1,23 @@
 #!/bin/sh
 
-options="poweroff\nreboot\nsuspend\nhibernate\nlogout"
+options="poweroff\nreboot\nsuspend\nhibernate"
 
-echo -e $options | dmenu -i -fn 'JetBrains Mono:size=13' -nb '#000000' -nf '#ffffff' -sb '#000000' -sf '#ffffff' | xargs -I{} sh -c "systemctl {}"
+choice=$(echo -e $options | dmenu -i -fn 'JetBrains Mono:size=13' -nb '#000000' -nf '#ffffff' -sb '#000000' -sf '#ffffff')
+
+case $choice in 
+    poweroff)
+        systemctl poweroff
+        ;;
+    reboot)
+        systemctl reboot
+        ;;
+    suspend)
+        systemctl suspend
+        ;;
+    hibernate)
+        systemctl hibernate
+        ;;
+    logout)
+        sudo pkill Xorg
+        ;;
+esac
